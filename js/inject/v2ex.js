@@ -26,6 +26,9 @@ function start() {
     }
 }
 function beautify(i, item, cont_, cmt) {
+    // if(i !== 29) {
+    //     return;
+    // }
     let h = cont_.html();
     // console.log(h, cont_[0]);
     if(h.indexOf('@') >= 0) {
@@ -39,20 +42,24 @@ function beautify(i, item, cont_, cmt) {
                 continue;
             }
             let refUser = extratRefUser(it);
-            let cont = extratCont(it);
-            if(cont.startsWith('<br>')) {
-                cont = cont.substring(4);
-            }
-            let refItem = findItemByUser(refUser);
-            if(refItem) {
+            if(refUser) {
+                let cont = extratCont(it);
+                if(cont.startsWith('<br>')) {
+                    cont = cont.substring(4);
+                }
+                let refItem = findItemByUser(refUser);
                 let refId = refItem.id;
                 let refCont = refItem.cont + ' #' + refItem.fl;
-                // console.log(it);
-                // console.log(refUser, cont, refId, refCont);
+                console.log(it);
+                console.log(refUser, cont, refId, refCont);
                 newHtml += '<div class="_ref">@<a href="/member/'+refUser+'">'+refUser+'</a> <a class="_ref_cont" href="javascript:_go(\''+refId+'\');" style="color:#a9a9a9;">'+refCont+'</a></div>' + 
                         '<div class="_cont">'+cont+'</div>';
             } else {
-                newHtml = tag+it;
+                if(it.indexOf("href=\"") >= 0) {
+                    newHtml += tag+it;
+                } else {
+                    newHtml += it;
+                }
             }
         }
         $('.reply_content', cmt).html(newHtml);
