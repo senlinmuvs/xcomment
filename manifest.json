@@ -1,0 +1,31 @@
+{
+  "name": "评论区美化",
+  "version": "1.0.0",
+  "description": "将一些网站的评论区进行美化以方便更好地查看评论。",
+  "manifest_version": 2,
+  "content_scripts": [
+    {
+      "matches": ["*://*.v2ex.com/*"],
+      "js": ["/js/content/page.js", "/js/content/install.js"],
+      "run_at": "document_start"
+    }
+  ],
+  "background": {
+    "persistent": true,
+    "scripts": [
+      "/js/bg/bg.js"
+    ]
+  },
+  "web_accessible_resources": [
+    "/js/inject/v2ex.js",
+    "/css/inject/v2ex.css"
+  ],
+  "externally_connectable": {
+    "matches": ["*://*.com/*"]
+  },
+  "icons": {
+    "16": "img/logo16.png",
+    "48": "img/logo48.png",
+    "128": "img/logo128.png"
+  }
+}

@@ -1,0 +1,14 @@
+._ref {
+    background-color: #eaeaea;
+    padding: 5px;
+    border-radius: 10px;
+}
+._ref_cont {
+    font-size: 13px;
+}
+._ref_cont:hover {
+    text-decoration: none;
+}
+._cont {
+    margin: 3px 0;
+}
