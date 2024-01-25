@@ -94,9 +94,10 @@ function _beautifyImg(it) {
     if(p.length > 0) {
         let a = p;
         // console.log(a, a[0].nodeName);
-        // if(a[0].nodeName === 'A') {
-            a.href = 'javascript:_view("'+it.src+'");';
+        if(a[0].nodeName === 'A') {
+            a[0].href = 'javascript:_view("'+it.src+'");';
             a.removeAttr('target');
+        }
         // } else {
         //     console.log(it, it.src);
         //     a = $('<a href="javascript:_view(\''+it.src+'\');"></a>');
