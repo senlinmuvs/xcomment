@@ -9,7 +9,7 @@ setTimeout(() => {
 function loadJS(url) {
     const pageScript = document.createElement('script');
     pageScript.setAttribute('type', 'text/javascript');
-    pageScript.setAttribute('src', chrome.extension.getURL(url));
+    pageScript.setAttribute('src', chrome.runtime.getURL(url));
     pageScript.defer = true;
     document.head.appendChild(pageScript);   
 }
@@ -17,7 +17,7 @@ function loadStyles(url) {
 	var link = document.createElement("link");
     link.rel = "stylesheet";
     link.type = "text/css";
-    link.href = chrome.extension.getURL(url);
+    link.href = chrome.runtime.getURL(url);
     var head = document.getElementsByTagName("head")[0];
     head.appendChild(link);
 }

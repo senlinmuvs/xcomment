@@ -12,3 +12,19 @@
 ._cont {
     margin: 3px 0;
 }
+._win_view {
+    background-color: rgba(19, 19, 19, 0.7);
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+}
+._win_view img {
+    max-width:99%;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
