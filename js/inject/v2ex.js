@@ -52,9 +52,11 @@ function beautify(i, item, cont_, cmt) {
                 let refCont = refItem.cont + ' #' + refItem.fl;
                 // console.log(it);
                 // console.log(refUser, cont, refId, refCont);
+                cont = replaceImg(cont);
                 newHtml += '<div class="_ref">@<a href="/member/'+refUser+'">'+refUser+'</a> <a class="_ref_cont" href="javascript:_go(\''+refId+'\');" style="color:#a9a9a9;">'+refCont+'</a></div>' + 
                         '<div class="_cont">'+cont+'</div>';
             } else {
+                it = replaceImg(it);
                 if(it.indexOf("href=\"") >= 0) {
                     newHtml += tag+it;
                 } else {
@@ -64,6 +66,67 @@ function beautify(i, item, cont_, cmt) {
         }
         $('.reply_content', cmt).html(newHtml);
     }
+}
+//![a](b.jpg)
+function replaceImg(s) {
+    let fromIndex = 0;
+    let tag0 = "![";
+    let tag1 = ")";
+    while(true) {
+        let arr = extractByTag(s, fromIndex, tag0, tag1);
+        console.log(arr);
+        if(!arr || arr.length < 2) {
+            break;
+        }
+        let imgMD = arr[0];
+        fromIndex = arr[1] + 1;
+        let src = extractSrc(imgMD);
+        let img = '<img style="max-width:100%;" src="'+src+'"/>';
+        console.log(imgMD, img);
+        s = s.replace(imgMD, img);
+    }
+    return s;
+}
+//hello ![a](b.jpg) xxxx
+function extractByTag(s, fromIndex, tag0, tag1) {
+    let start = -1;
+    let end = -1;
+    let tmpS = "";
+    let foundTag0 = false;
+    for(let i = fromIndex; i < s.length; i++) {
+        tmpS += s[i];
+        if(foundTag0) {
+            if(tmpS === tag1) {
+                end = i;
+                break;
+            }
+            if(!tag1.startsWith(tmpS)) {
+                tmpS = "";
+            }
+        } else {
+            if(tmpS === tag0) {
+                foundTag0 = true;
+                start = i-tag0.length+1;
+            }
+            if(!tag0.startsWith(tmpS)) {
+                tmpS = "";
+            }
+        }
+    }
+    // console.log(start, end, foundTag0, tmpS);
+    if(start >= 0 && end >= 0 && start < end) {
+        return [s.substring(start, end+1), end];
+    }
+    return null;
+}
+
+function extractSrc(s) {
+    let arr = extractByTag(s, 0, "(", ")");
+    // console.log(arr);
+    if(arr && arr.length > 0) {
+        return arr[0].substring(1, arr[0].length-1).trim();
+    }
+    return "";
 }
 function findItemByUser(user) {
     for(let i = _comments.length-1; i >= 0; i--) {
