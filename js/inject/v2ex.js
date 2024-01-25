@@ -74,7 +74,7 @@ function replaceImg(s) {
     let tag1 = ")";
     while(true) {
         let arr = extractByTag(s, fromIndex, tag0, tag1);
-        console.log(arr);
+        // console.log(arr);
         if(!arr || arr.length < 2) {
             break;
         }
@@ -82,7 +82,7 @@ function replaceImg(s) {
         fromIndex = arr[1] + 1;
         let src = extractSrc(imgMD);
         let img = '<img style="max-width:100%;" src="'+src+'"/>';
-        console.log(imgMD, img);
+        // console.log(imgMD, img);
         s = s.replace(imgMD, img);
     }
     return s;
