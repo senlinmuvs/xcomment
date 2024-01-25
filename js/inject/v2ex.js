@@ -50,8 +50,8 @@ function beautify(i, item, cont_, cmt) {
                 let refItem = findItemByUser(refUser);
                 let refId = refItem.id;
                 let refCont = refItem.cont + ' #' + refItem.fl;
-                console.log(it);
-                console.log(refUser, cont, refId, refCont);
+                // console.log(it);
+                // console.log(refUser, cont, refId, refCont);
                 newHtml += '<div class="_ref">@<a href="/member/'+refUser+'">'+refUser+'</a> <a class="_ref_cont" href="javascript:_go(\''+refId+'\');" style="color:#a9a9a9;">'+refCont+'</a></div>' + 
                         '<div class="_cont">'+cont+'</div>';
             } else {
