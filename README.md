@@ -9,12 +9,12 @@ v2ex.com
 
 2. 打开chrome系浏览器扩展管理 -> 加载解压缩的扩展 -> 选中刚刚 clone 的库的根目录
 ![](https://i.miji.bid/2024/01/25/9497cf9b308c104bd99e6b6e48d3eae1.png)
-
 ![](https://i.miji.bid/2024/01/25/5fd11fd84871a83271d1ce2884b59491.png)
 
 3. 刷新评论区
 
 之前：
+
 ![5f022130283a1b509de87637ffe7602b.png](https://i.miji.bid/2024/01/25/5f022130283a1b509de87637ffe7602b.png)
 
 现在：
