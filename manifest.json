@@ -1,7 +1,7 @@
 {
-  "name": "评论区美化",
+  "name": "评论区美化增强",
   "version": "1.0.0",
-  "description": "将一些网站的评论区进行美化以方便更好地查看评论。",
+  "description": "将一些网站的评论区进行美化增强以方便更好地查看评论。",
   "manifest_version": 2,
   "content_scripts": [
     {
