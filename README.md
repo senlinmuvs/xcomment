@@ -19,5 +19,5 @@ v2ex.com
 
 现在：
 
-点击引用可直接跳转到相应楼层
+点击引用可直接跳转到相应楼层，点击图片能放大。
 ![cbf2e9c0dd1e2fc6a9f641d96644d265.png](https://i.miji.bid/2024/01/25/cbf2e9c0dd1e2fc6a9f641d96644d265.png)
