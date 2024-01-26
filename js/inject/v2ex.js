@@ -45,27 +45,29 @@ function _beautify(i, item, cont_, cmt) {
         let arr = h.split(tag);
         for(let i = 0; i < arr.length; i++) {
             let it = arr[i];
-            if(!it) {
-                continue;
-            }
-            let refUser = _extratRefUser(it);
-            if(refUser) {
-                let cont = _extratCont(it);
-                if(cont.startsWith('<br>')) {
-                    cont = cont.substring(4);
-                }
-                let refItem = _findItemByUser(refUser);
-                let refId = refItem.id;
-                let refCont = refItem.cont + ' #' + refItem.fl;
-                // console.log(it);
-                // console.log(refUser, cont, refId, refCont);
-                newHtml += '<div class="_ref">@<a href="/member/'+refUser+'">'+refUser+'</a> <a class="_ref_cont" href="javascript:_go(\''+refId+'\');" style="color:#a9a9a9;">'+refCont+'</a></div>' + 
-                        '<div class="_cont">'+cont+'</div>';
-            } else {
-                if(it.indexOf("href=\"") >= 0) {
-                    newHtml += tag+it;
+            if(it) {
+                let refUser = _extratRefUser(it);
+                if(refUser) {
+                    let cont = _extratCont(it);
+                    if(cont.startsWith('<br>')) {
+                        cont = cont.substring(4);
+                    }
+                    // console.log(it, refUser);
+                    let refItem = _findItemByUser(refUser);
+                    if(refItem) {
+                        let refId = refItem.id;
+                        let refCont = refItem.cont + ' #' + refItem.fl;
+                        // console.log(it);
+                        // console.log(refUser, cont, refId, refCont);
+                        newHtml += '<div class="_ref">@<a href="/member/'+refUser+'">'+refUser+'</a> <a class="_ref_cont" href="javascript:_go(\''+refId+'\');" style="color:#a9a9a9;">'+refCont+'</a></div>' + 
+                                '<div class="_cont">'+cont+'</div>';
+                    }
                 } else {
-                    newHtml += it;
+                    if(it.indexOf("href=\"") >= 0) {
+                        newHtml += tag+it;
+                    } else {
+                        newHtml += it;
+                    }
                 }
             }
         }
@@ -93,7 +95,7 @@ function _beautifyImg(it) {
     let p = $(it).parent();
     if(p.length > 0) {
         let a = p;
-        // console.log(a, a[0].nodeName);
+        console.log(a, a[0].nodeName);
         if(a[0].nodeName === 'A') {
             a[0].href = 'javascript:_view("'+it.src+'");';
             a.removeAttr('target');
